@@ -415,6 +415,8 @@ impl ChatWidget {
 
     pub(super) fn refresh_model_display(&mut self) {
         let effective = self.effective_collaboration_mode();
+        self.bottom_pane
+            .stop_ineligible_sparkle(effective.model(), &self.local_settings.tui);
         self.session_header.set_model(effective.model());
         // Keep composer paste affordances aligned with the currently effective model.
         self.sync_image_paste_enabled();
@@ -697,7 +699,6 @@ impl ChatWidget {
                 /*approvals_reviewer*/ None,
                 /*permission_profile*/ None,
                 /*active_permission_profile*/ None,
-                /*windows_sandbox_level*/ None,
                 /*model*/ None,
                 /*effort*/ None,
                 /*summary*/ None,

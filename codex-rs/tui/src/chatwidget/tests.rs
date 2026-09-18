@@ -272,12 +272,18 @@ mod reasoning_status_tests;
 #[path = "tests/replay_render_tests.rs"]
 mod replay_render_tests;
 mod review_mode;
+#[path = "tests/session_model_selection_tests.rs"]
+mod session_model_selection_tests;
 mod side;
 mod slash_commands;
+#[path = "tests/sparkle_submission_tests.rs"]
+mod sparkle_submission_tests;
 mod status_and_layout;
 mod status_command_tests;
 mod status_surface_previews;
 mod terminal_title;
+#[path = "tests/tool_activity_tests.rs"]
+mod tool_activity_tests;
 mod usage;
 #[path = "tests/worktree_picker_tests.rs"]
 mod worktree_picker;

@@ -110,6 +110,8 @@ pub enum Feature {
     SecretAuthStorage,
 
     // Experimental
+    /// Automatically start the shared local daemon for eligible interactive launches.
+    DaemonAutoStart,
     /// Send per-content-entry classifications in internal Responses metadata.
     ContentItemKinds,
     /// Record model-attempted tool calls in internal Responses metadata.
@@ -338,6 +340,8 @@ pub enum Feature {
     ReasoningEffortOverride,
     /// Add current-time reminders to model-visible context.
     CurrentTimeReminder,
+    /// Report failed clock reads to the model without failing the turn.
+    NonfatalClockReadErrors,
     /// Route MCP tool approval prompts through the MCP elicitation request path.
     ToolCallMcpElicitation,
     /// Prompt Codex Apps connector auth failures through MCP URL elicitations.
@@ -915,6 +919,16 @@ pub const FEATURES: &[FeatureSpec] = &[
             name: "Analytics plan history",
             menu_description: "Preview five-hour and weekly allowance history for consumer accounts in /analytics.",
             announcement: "",
+        },
+        default_enabled: false,
+    },
+    FeatureSpec {
+        id: Feature::DaemonAutoStart,
+        key: "daemon_auto_start",
+        stage: Stage::Experimental {
+            name: "Automatically start the background server",
+            menu_description: "Use the shared local server for new, resumed, and forked sessions. Takes effect next launch.",
+            announcement: "Automatic background server startup can now be enabled from /experimental.",
         },
         default_enabled: false,
     },
@@ -1658,6 +1672,12 @@ pub const FEATURES: &[FeatureSpec] = &[
     FeatureSpec {
         id: Feature::CurrentTimeReminder,
         key: "current_time_reminder",
+        stage: Stage::UnderDevelopment,
+        default_enabled: false,
+    },
+    FeatureSpec {
+        id: Feature::NonfatalClockReadErrors,
+        key: "nonfatal_clock_read_errors",
         stage: Stage::UnderDevelopment,
         default_enabled: false,
     },
